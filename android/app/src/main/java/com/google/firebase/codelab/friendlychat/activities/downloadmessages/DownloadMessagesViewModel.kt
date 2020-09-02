@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.codelab.friendlychat.models.DownloadMessageOptions
+import com.google.firebase.codelab.friendlychat.webservice.WebserviceFactory
 import kotlinx.coroutines.launch
-import java.lang.Thread.sleep
+import org.json.JSONObject
 
 class DownloadMessagesViewModel : ViewModel() {
 
     data class ViewState(
             val running: Boolean = false,
             val completed: Boolean = false,
-            val messages: String? = null
+            val messages: String? = null,
+            val json: String? = null
     )
 
     private val _viewState: MutableLiveData<ViewState> = MutableLiveData()
@@ -25,18 +28,21 @@ class DownloadMessagesViewModel : ViewModel() {
         _viewState.value = ViewState()
     }
 
-    fun getMessages(getText: Boolean, getName: Boolean, getAvatar: Boolean, getImage: Boolean) {
+    fun getMessages(downloadMessageOptions: DownloadMessageOptions) {
         _viewState.value = currentViewState().copy(running = true)
         viewModelScope.launch {
-            // TODO: get messages
-            sleep(3000)
+            val firebaseRestFunctionsService = WebserviceFactory.getFirebaseRestFunctionsService()
+            val prettyJson = JSONObject(firebaseRestFunctionsService.getAllMessages(downloadMessageOptions)).toString(2)
             val messages = """Temporary Message:
-                |You asked for text: $getText
-                |You asked for names: $getName
-                |You asked for avatar urls: $getAvatar
-                |You asked for image urls: $getImage
+                |You asked for text: ${downloadMessageOptions.getText}
+                |You asked for names: ${downloadMessageOptions.getName}
+                |You asked for avatar urls: ${downloadMessageOptions.getAvatar}
+                |You asked for image urls: ${downloadMessageOptions.getImage}
+                |Json Result:
+                |
+                |${prettyJson}
             """.trimMargin()
-            _viewState.postValue(currentViewState().copy(running = false, completed = true, messages = messages))
+            _viewState.postValue(currentViewState().copy(running = false, completed = true, messages = messages, json = prettyJson))
         }
     }
 }
