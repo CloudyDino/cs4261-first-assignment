@@ -47,6 +47,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.codelab.friendlychat.downloadmessages.DownloadMessagesActivity
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -205,7 +206,7 @@ class MainActivity : AppCompatActivity() {
         (mFirebaseAdapter as FirebaseRecyclerAdapter<FriendlyMessage?, MessageViewHolder?>).registerAdapterDataObserver(object : AdapterDataObserver() {
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
                 super.onItemRangeInserted(positionStart, itemCount)
-                val friendlyMessageCount = (mFirebaseAdapter as FirebaseRecyclerAdapter<FriendlyMessage?, MessageViewHolder?>).getItemCount()
+                val friendlyMessageCount = (mFirebaseAdapter as FirebaseRecyclerAdapter<FriendlyMessage?, MessageViewHolder?>).itemCount
                 val lastVisiblePosition = mLinearLayoutManager!!.findLastCompletelyVisibleItemPosition()
                 // If the recycler view is initially being loaded or the
                 // user is at the bottom of the list, scroll to the bottom
@@ -222,11 +223,7 @@ class MainActivity : AppCompatActivity() {
         mMessageEditText!!.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                if (charSequence.toString().trim { it <= ' ' }.length > 0) {
-                    mSendButton!!.isEnabled = true
-                } else {
-                    mSendButton!!.isEnabled = false
-                }
+                mSendButton!!.isEnabled = charSequence.toString().trim { it <= ' ' }.length > 0
             }
 
             override fun afterTextChanged(editable: Editable) {}

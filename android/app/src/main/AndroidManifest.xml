@@ -18,7 +18,7 @@
         </activity>
 
         <activity android:name=".SignInActivity" />
-        <activity android:name=".DownloadMessagesActivity" />
+        <activity android:name=".downloadmessages.DownloadMessagesActivity" />
 
         <service
             android:name=".MyFirebaseMessagingService"
