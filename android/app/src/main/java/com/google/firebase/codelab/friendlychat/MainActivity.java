@@ -430,6 +430,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SignInActivity.class));
                 finish();
                 return true;
+            case R.id.download_all_messages_menu:
+                startActivity(new Intent(this, DownloadMessagesActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -7,6 +7,11 @@
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/download_all_messages_menu"
+        android:title="@string/download_all_messages"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/crash_menu"
         android:title="@string/cause_crash"
         app:showAsAction="never"/>
