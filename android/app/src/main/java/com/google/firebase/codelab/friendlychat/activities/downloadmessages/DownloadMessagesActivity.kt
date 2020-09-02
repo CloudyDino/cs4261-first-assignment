@@ -28,6 +28,7 @@ class DownloadMessagesActivity : AppCompatActivity() {
                 val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 val clip = ClipData.newPlainText("messages in json", possibleJson);
                 clipboard.setPrimaryClip(clip);
+                Toast.makeText(this, "Json Copied!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "No messages downloaded", Toast.LENGTH_SHORT).show()
             }
