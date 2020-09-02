@@ -47,9 +47,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.codelab.friendlychat.models.FriendlyMessage
 import com.google.firebase.codelab.friendlychat.R
 import com.google.firebase.codelab.friendlychat.activities.downloadmessages.DownloadMessagesActivity
+import com.google.firebase.codelab.friendlychat.models.FriendlyMessage
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -232,10 +232,11 @@ class MainActivity : AppCompatActivity() {
         })
         mSendButton = findViewById<View>(R.id.sendButton) as Button
         mSendButton!!.setOnClickListener {
-            val friendlyMessage = FriendlyMessage(mMessageEditText!!.text.toString(),
-                    mUsername,
-                    mPhotoUrl,
-                    null /* no image */)
+            val friendlyMessage = FriendlyMessage(
+                    text = mMessageEditText!!.text.toString(),
+                    name = mUsername,
+                    photoUrl = mPhotoUrl)
+
             mFirebaseDatabaseReference!!.child(MESSAGES_CHILD)
                     .push().setValue(friendlyMessage)
             mMessageEditText!!.setText("")
@@ -258,8 +259,11 @@ class MainActivity : AppCompatActivity() {
                 if (data != null) {
                     val uri = data.data
                     Log.d(TAG, "Uri: " + uri.toString())
-                    val tempMessage = FriendlyMessage(name = mUsername, photoUrl = mPhotoUrl,
-                            imageUrl = LOADING_IMAGE_URL)
+                    val tempMessage = FriendlyMessage(
+                            name = mUsername,
+                            photoUrl = mPhotoUrl,
+                            imageUrl = LOADING_IMAGE_URL
+                    )
                     mFirebaseDatabaseReference!!.child(MESSAGES_CHILD).push()
                             .setValue(tempMessage) { databaseError: DatabaseError?, databaseReference: DatabaseReference ->
                                 if (databaseError == null) {
@@ -287,8 +291,12 @@ class MainActivity : AppCompatActivity() {
                         .addOnCompleteListener(this@MainActivity
                         ) { task ->
                             if (task.isSuccessful) {
-                                val friendlyMessage = FriendlyMessage(null, mUsername, mPhotoUrl,
-                                        task.result.toString())
+                                val friendlyMessage = FriendlyMessage(
+                                        text = null,
+                                        name = mUsername,
+                                        photoUrl = mPhotoUrl,
+                                        imageUrl = task.result.toString()
+                                )
                                 mFirebaseDatabaseReference!!.child(MESSAGES_CHILD).child(key!!)
                                         .setValue(friendlyMessage)
                             }
