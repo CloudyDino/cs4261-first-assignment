@@ -1,4 +1,4 @@
-package com.google.firebase.codelab.friendlychat
+package com.google.firebase.codelab.friendlychat.webservice.webservices
 
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessaging

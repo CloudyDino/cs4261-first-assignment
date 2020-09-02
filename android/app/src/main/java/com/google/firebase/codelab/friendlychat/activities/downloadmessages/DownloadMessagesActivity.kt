@@ -1,4 +1,4 @@
-package com.google.firebase.codelab.friendlychat.downloadmessages
+package com.google.firebase.codelab.friendlychat.activities.downloadmessages
 
 import android.os.Bundle
 import android.view.View

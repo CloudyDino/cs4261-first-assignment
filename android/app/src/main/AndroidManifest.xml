@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.google.firebase.codelab.friendlychat.MainActivity">
+        <activity android:name="com.google.firebase.codelab.friendlychat.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,11 +17,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".downloadmessages.DownloadMessagesActivity" />
+        <activity android:name=".activities.SignInActivity" />
+        <activity android:name=".activities.downloadmessages.DownloadMessagesActivity" />
 
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".webservice.webservices.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

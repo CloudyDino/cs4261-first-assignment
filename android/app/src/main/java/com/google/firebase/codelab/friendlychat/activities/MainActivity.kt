@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.firebase.codelab.friendlychat
+package com.google.firebase.codelab.friendlychat.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -47,7 +47,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.codelab.friendlychat.downloadmessages.DownloadMessagesActivity
+import com.google.firebase.codelab.friendlychat.models.FriendlyMessage
+import com.google.firebase.codelab.friendlychat.R
+import com.google.firebase.codelab.friendlychat.activities.downloadmessages.DownloadMessagesActivity
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

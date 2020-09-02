@@ -24,7 +24,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
-import com.google.firebase.codelab.friendlychat.MainActivity
+import com.google.firebase.codelab.friendlychat.activities.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

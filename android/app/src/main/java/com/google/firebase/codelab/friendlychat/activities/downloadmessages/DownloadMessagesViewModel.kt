@@ -1,4 +1,4 @@
-package com.google.firebase.codelab.friendlychat.downloadmessages
+package com.google.firebase.codelab.friendlychat.activities.downloadmessages
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
